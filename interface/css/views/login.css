@@ -1,0 +1,293 @@
+
+.card_shadow_float {
+    box-shadow: var(--shadow-elevation-medium);
+    border-radius: 15px;
+  }
+  
+  .containerLoginRegister {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    min-height: 483px;
+  }
+  
+  .contentFormLoginRegister {
+    width: 100%;
+    max-width: 720px;
+    margin: auto;
+    position: relative;
+  
+  }
+  
+  .boxBeforeForms {
+    width: 100%;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-evenly;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.65);
+    background: var(--opaco);
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    align-items: center;
+  }
+  
+  .boxBefore {
+    margin: 40px 14px;
+    color: white;
+    transition: all 590ms;
+    max-width: 294px;
+    height: 100%;
+    opacity: 0;
+  }
+  
+  .boxBefore.active {
+    opacity: 1;
+  }
+  
+  .boxBefore h3 {
+    font-weight: 400;
+    font-size: 30px;
+  }
+  
+  .boxBefore p {
+    margin-top: 30px;
+  }
+  
+  .boxBefore :is(button, p, h3) {
+    color: var(--color-fixed-text_secundary);
+    color: var(--color_text-tertiary);
+  }
+  
+  .boxBefore button {
+    margin-top: 30px;
+    padding: 10px 40px;
+    background: transparent;
+    border: 2px solid;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 300ms;
+  }
+  
+  .contentFormulariosLoginRegister {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 360px;
+    position: relative;
+    /* position: absolute; */
+    left: 10px;
+    border-radius: 20px;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.0320, 1.275);
+    top: -170px;
+  }
+  
+  .contentFormulariosLoginRegister.active {
+    left: 350px;
+  }
+  
+  .containerForm {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 40px 20px 30px;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    width: 100%;
+    position: absolute;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 389px;
+  }
+  
+  .contentFormulariosLoginRegister.active .containerForm:nth-child(1) {
+    display: none;
+  }
+  
+  .contentFormulariosLoginRegister.active .containerForm:nth-child(2) {
+    display: flex;
+  }
+  
+  .contentFormulariosLoginRegister .containerForm:nth-child(2) {
+    display: none;
+  }
+  
+  .containerForm h3 {
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    color: var(--color-text-primary);
+  }
+  
+  .seccionForm.active {
+    display: flex;
+  }
+  
+  .seccionForm {
+    flex-direction: column;
+    gap: 20px;
+    display: none;
+    width: 100%;
+  }
+  
+  .inputField {
+    position: relative;
+    margin-bottom: 0px;
+    height: 43.98px;
+    width: 100%;
+  }
+  
+  
+  .inputField input,
+  .inputField textarea,
+  .inputField select {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: var(--color_text-primary);
+    border: 2px solid transparent;
+    background: var(--color-primary);
+    padding-right: 45px;
+    transition: all ease 0.4s;
+  }
+  
+  .inputField input:focus~label,
+  .inputField select:focus~label,
+  .inputField textarea:focus~label,
+  .inputField input:valid~label,
+  .inputField select:valid~label,
+  .inputField textarea:valid~label {
+    top: -1px;
+    left: 13px;
+    font-size: 13px;
+    padding: 0 3px;
+    color: var(--color_text-primary);
+    background: linear-gradient(359deg, transparent, var(--color-white), var(--color-white), transparent);
+  }
+  
+  .inputField input:not([type="text"]):focus,
+  .inputField input:not([type="text"]):focus~.infoInput,
+  .inputField input:not([type="password"]):focus,
+  .inputField input:not([type="password"]):focus~.infoInput,
+  .inputField input:not([type="email"]):focus,
+  .inputField input:not([type="email"]):focus~.infoInput,
+  .inputField select:focus,
+  .inputField textarea:focus,
+  .inputField input:not([type="text"]):valid,
+  .inputField input:not([type="text"]):valid~.infoInput,
+  .inputField input:not([type="password"]):valid,
+  .inputField input:not([type="password"]):valid~.infoInput,
+  .inputField input:not([type="email"]):valid,
+  .inputField input:not([type="email"]):valid~.infoInput,
+  .inputField select:valid,
+  .inputField textarea:valid {
+    color: var(--color_text-primary);
+    border-color: var(--color-tertiary);
+    background: var(--color-white);
+  }
+  
+  .inputField input:valid.no-valid {
+    color: var(--color-error);
+    border-color: var(--color-error);
+  }
+  
+  .inputField input:valid.valid {
+    color: var(--color-success);
+    border-color: var(--color-success);
+  }
+  
+  .inputField label {
+    position: absolute;
+    height: min-content;
+    top: 21px;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    /* display: none; */
+  }
+  
+  .containerForm .button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .button-container :is(input[type="submit"],
+    button) {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 18px;
+    background: var(--color-tertiary);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    height: 45px;
+    text-align: center;
+    color: var(--color-white);
+    border: 2px solid var(--color-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  @media screen and (max-width: 780px) {
+    .contentFormLoginRegister {
+      /* width: max-content; */
+      display: flex;
+      flex-direction: column;
+      max-width: 370px;
+      align-items: center;
+    }
+  
+    .boxBefore {
+      display: none;
+    }
+  
+    .boxBefore.active {
+      display: inline-flex;
+      flex-direction: column;
+    }
+  
+    .contentFormulariosLoginRegister .containerForm {
+      position: relative;
+    }
+  
+    .contentFormulariosLoginRegister {
+      top: -5px;
+      max-width: none;
+      left: 0;
+    }
+  
+    .contentFormulariosLoginRegister.active {
+      top: -5px;
+      max-width: none;
+      left: 0;
+    }
+  
+    .boxBeforeForms {
+      width: calc(100% - 15px);
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+    .containerLoginRegister {
+      padding-top: 40px;
+      padding-bottom: 50px;
+      min-height: 483px;
+  }
+  }

@@ -3,24 +3,27 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 class User extends Model
 {
     protected $table = 'users';
-    public $incrementing = false; // Utilizar UUID en lugar de auto-incremento
-    protected $keyType = 'string';
-    protected $fillable = ['id', 'name', 'lastname', 'dni', 'password', 'rol_id'];
+    protected $fillable = ['id', 'name', 'dni', 'lastname', 'email', 'username', 'password', 'role_id'];
+    public $incrementing = false;
+    protected $keyType = 'string'; // UUID es un string
 
-    // Crear un UUID al crear el modelo
     protected static function boot()
     {
         parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = Uuid::uuid4()->toString();
-            }
+        static::creating(function (Model $model) {
+            // if (! $model->getKey()) {
+            $model->{$model->getKeyName()} = (string) Str::uuid();
+            // }
         });
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

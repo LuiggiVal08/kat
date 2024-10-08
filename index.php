@@ -4,6 +4,7 @@ namespace App;
 
 require 'vendor/autoload.php';
 
+
 use Dotenv\Dotenv;
 use Exception;
 use Firebase\JWT\JWT;
@@ -14,7 +15,6 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 require 'src/config/db.php';
-
 require 'src/router/index.php';
 require 'src/view_router.php';
 require_once 'src/helpers/index.php';

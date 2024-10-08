@@ -1,9 +1,10 @@
 {
     "name": "admin/casagro_new",
+    "description": "template for project in php",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
+            "App\\": "/",
             "App\\Model\\": "src/models",
             "App\\Controllers\\": "src/controllers"
         }
@@ -19,5 +20,9 @@
         "illuminate/database": "^11.20",
         "ramsey/uuid": "^4.7",
         "flightphp/core": "^3.11"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
     }
 }

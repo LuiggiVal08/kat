@@ -1,0 +1,9 @@
+
+.section__img{
+    height: auto;
+    max-width: 340px;
+    float: right;
+    margin-left: 20px;
+    mask-image: radial-gradient(#fff 40%, transparent);
+    border-radius: 20px;
+}

@@ -6,9 +6,11 @@ $dotenv->load();
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-$_ENV['APP_ENV'] = 'development';
+// $_ENV['APP_ENV'] = 'development';
 $capsule = new Capsule;
 // Configura la conexión según el entorno
+echo $_ENV['APP_ENV'];
+echo 'hola';
 if ($_ENV['APP_ENV'] === 'development') {
     $capsule->addConnection([
         'driver'   => 'sqlite',
@@ -32,13 +34,11 @@ if ($_ENV['APP_ENV'] === 'development') {
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$files = [
-    'migrations/2024_08_08_create_users_table.php',
-    'migrations/2024_08_08_create_roles_table.php',
-    'migrations/2024_08_08_create_reports_table.php',
-];
+// Obtener todos los archivos de migraciones
+$migrationFiles = glob(__DIR__ . '/migrations/*.php');
 
-foreach ($files as $file) {
+// Incluir y ejecutar cada archivo de migración
+foreach ($migrationFiles as $file) {
     require $file;
 }
 

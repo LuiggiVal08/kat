@@ -4,7 +4,7 @@
         <div class="container   mx-auto md:flex md:justify-between md:items-center py-2 pt-3">
             <div class="flex items-center justify-between px-4">
                 <a href="/">
-                    <img class="w-auto h-8 sm:h-9" src="/images/logos3.png" alt="">
+                    <h1 class="font-sketchup text-4xl">Tech4All</span></h1>
                 </a>
 
                 <!-- Mobile menu button -->
@@ -24,16 +24,74 @@
             <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
             <div x-cloak :class="[isOpenNav ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center">
                 <div class="flex flex-col md:flex-row md:mx-4 gap-1.5 md:gap-6 items-center">
-                    <a href="/" class="text-text-tertiary border-b-2 border-transparent transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-tertiary-200  hover:text-tertiary-200  max-md:py-2 max-sm:px-2 sm:hover:bg-opacity-50 h-fit font-medium">Inicio</a>
+                    <a href="/" class="t border-b-2 border-transparent transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-600  hover:text-blue-400  max-md:py-2 max-sm:px-2 sm:hover:bg-opacity-50 h-fit font-medium">Inicio</a>
+                    <a href="/about" class="t border-b-2 border-transparent transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-600  hover:text-blue-400  max-md:py-2 max-sm:px-2 sm:hover:bg-opacity-50 h-fit font-medium">Acerca de</a>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        <a href="/lessons"
+                            class="t border-b-2 border-transparent transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-600  hover:text-blue-400  max-md:py-2 max-sm:px-2 sm:hover:bg-opacity-50 h-fit font-medium">
+                            Lecciones
+                        </a>
 
 
-                    <a href="#" class="text-text-tertiary border-b-2 border-transparent transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-tertiary-200  hover:text-tertiary-200 max-md:py-2 max-sm:px-2 sm:hover:bg-opacity-50 h-fit font-medium">Asistencias</a>
+                    <?php endif; ?>
+                    <?php if (!isset($_SESSION['user'])) : ?>
 
-                    <a href="login" class="text-text-tertiary border-b-2 transition-colors duration-300 transform dark:hover:text-gray-200 hover:bg-tertiary-100  hover:text-white  py-1  px-5  flex items-center gap-2 border-2 border-tertiary-100 font-medium rounded-md">
-                        Ingresar
-                        <span class="material-symbols-rounded ico-login md-24 fill-1 wght-18 leading-none" />
-                    </a>
+                        <a href="/login" class="text-xl border-b-2 transition-colors text-blue-600 duration-300 transform dark:hover:text-gray-200 hover:bg-blue-600  hover:text-white  py-1  px-5  flex items-center gap-2 border-2 border-blue-600 font-medium rounded-md font-sketchup">
+                            Ingresar
+                            <!-- <span class="material-symbols-rounded ico-login md-24 fill-1 wght-18 leading-none"></span> -->
+                        </a>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        <div class="relative inline-block text-left " x-data="{ open: false }">
+                            <!-- Botón del perfil con imagen -->
+                            <button @click="open = !open" type="button" class="inline-flex items-center rounded-full text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <img src="/images/profile.webp" alt="Perfil" class="w-8 h-8 rounded-full ">
+                                <!-- <span>Mi Perfil</span> -->
+                            </button>
 
+                            <!-- Menú desplegable -->
+                            <div x-show="open" @click.outside="open = false" class="border-[1px] border-gray-300 absolute right-0 mt-2 w-48 bg-white  rounded-md shadow-lg z-20 py-4">
+                                <a href="/profile"
+                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 duration-200">
+                                    Ir al perfil
+                                </a>
+                                <a href="/profile"
+                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 duration-200">
+                                    Puntaje
+                                </a>
+                                <button @click="cerrarSesion()"
+                                    class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 duration-200">
+                                    Cerrar sesión
+                                </button>
+                            </div>
+                        </div>
+
+                        <script>
+                            const cerrarSesion = async () => {
+                                try {
+                                    const response = await fetch('/api/logout', {
+                                        method: 'POST'
+                                    });
+                                    // Verificar el estado de la respuesta
+                                    const result = await response.json();
+                                    if (response.ok) {
+                                        // alert('Sesión cerrada correctamente');
+                                        console.log(result)
+                                        // Redirigir a la página de login o página de inicio
+                                        window.location.href = '/login';
+                                    } else {
+                                        alert('Error al cerrar sesión');
+                                        throw new Error('Error al cerrar sesión');
+                                    }
+                                } catch (error) {
+                                    console.error('Error al cerrar sesión:', error);
+                                    alert('Hubo un problema al cerrar sesión.');
+                                }
+                            }
+                        </script>
+
+
+                    <?php endif; ?>
 
                 </div>
 

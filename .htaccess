@@ -4,7 +4,7 @@ RewriteEngine On
 # Redirige las solicitudes a la carpeta 'public' para archivos estáticos
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(css|js|images|fonts)/(.+\.(css|js|png|jpg|gif|ico|svg|woff|woff2|ttf|eot))$ public/$1/$2 [L]
+RewriteRule ^(css|js|images|fonts)/(.+\.(css|js|png|jpg|gif|ico|svg|woff|woff2|ttf|eot|webp|avif))$ public/$1/$2 [L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
